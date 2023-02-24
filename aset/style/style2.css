@@ -183,6 +183,9 @@ input[type="file"]::file-selector-button {
   height: 30px;
   margin: 20px 0;
 }
+.buttonForm button:hover {
+  cursor: pointer;
+}
 /* Bayangan */
 #name,
 #description,
