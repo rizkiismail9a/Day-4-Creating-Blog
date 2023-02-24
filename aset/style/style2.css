@@ -188,7 +188,8 @@ input[type="file"]::file-selector-button {
 #description,
 #startDate,
 #endDate,
-.paper {
+.paper,
+.card {
   box-shadow: 0 8px 10px -2px gray;
 }
 
