@@ -1,0 +1,117 @@
+/* Awal Navbar */
+body {
+  background-color: rgb(231, 231, 231);
+  margin: 0;
+}
+nav.nav {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-direction: row;
+  padding: 0 50px 0;
+  justify-content: space-between;
+  height: 50px;
+  margin: 0;
+}
+div.kiri,
+div.kanan {
+  display: flex;
+  flex-direction: row;
+}
+
+div.kiri {
+  justify-content: space-evenly;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+}
+.logo,
+.home,
+.project {
+  margin-right: 25px;
+}
+.logo {
+  font-size: 20px;
+  color: rgb(173, 42, 42);
+}
+.home a,
+.project a {
+  color: black;
+}
+div.kanan {
+  justify-content: flex-end;
+  align-items: center;
+}
+.kanan button {
+  background-color: black;
+  padding: 5px;
+  height: 30px;
+  width: 90px;
+  border: none;
+  border-radius: 5px;
+}
+
+.kanan button a {
+  color: rgb(221, 221, 221);
+  font-size: 12px;
+}
+/* Akhir Navbar */
+
+/* Awal Gambar dan Info */
+.judul {
+  display: flex;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+  margin: 30px;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  /* background-color: aquamarine; */
+  margin: auto;
+  width: 1100px;
+  flex-wrap: wrap;
+}
+
+.gambar {
+  display: flex;
+  /* background-color: beige; */
+}
+
+.container .gambar img {
+  width: 600px;
+}
+
+.info {
+  font-size: 1.2rem;
+  /* background-color: bisque; */
+  width: 450px;
+}
+
+p i {
+  margin-right: 15px;
+  color: black;
+}
+
+.duration p,
+.equipment p {
+  color: rgb(133, 133, 133);
+}
+
+h4 {
+  margin-bottom: 0;
+}
+.equipment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100px;
+}
+
+.paragraf {
+  text-align: justify;
+  margin: auto 18px;
+  justify-self: center;
+}
