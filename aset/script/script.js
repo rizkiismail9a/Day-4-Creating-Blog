@@ -6,7 +6,6 @@ let datas = [
     equipment1: true,
     equipment2: true,
     equipment3: true,
-    date: "25 hari",
   },
   {
     image: "aset/images/Quality time1.png",
@@ -14,14 +13,12 @@ let datas = [
     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repudiandae explicabo recusandae aperiam sit voluptas?",
     equipment1: true,
     equipment2: true,
-    date: "2 bulan",
   },
   {
     image: "aset/images/Quality time1.png",
     nama: "Ya Allah, Berilah Kemudahan",
     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repudiandae explicabo recusandae aperiam sit voluptas?",
     equipment1: true,
-    date: "1 Tahun",
   },
 ];
 
@@ -35,14 +32,10 @@ function getData(event) {
   const equipment3 = document.getElementById("alat3").checked;
   const equipment4 = document.getElementById("alat4").checked;
   let image = document.getElementById("upload").files;
-  const startDate = new Date(document.getElementById("startDate").value);
-  const endDate = new Date(document.getElementById("endDate").value);
-  const date = calculateDuration(startDate, endDate);
 
   image = URL.createObjectURL(image[0]);
   const data = {
     nama,
-    date,
     description,
     equipment1,
     equipment2,
@@ -51,7 +44,6 @@ function getData(event) {
     image,
   };
 
-  console.log(date);
   datas.push(data);
   showData();
 }
@@ -68,8 +60,6 @@ const showData = () => {
     <div class="judulCard">
       <h3><a href="blogPage.html" style="color: black">${datas[i].nama}</a></h3>
     </div>
-
-    <div class="duration">Duration: ${datas[i].date}</div>
 
     <div class="preview"><p>${datas[i].description}</p></div>
 
@@ -102,26 +92,5 @@ function cekList(datas) {
 
   return icon;
 }
-
-const calculateDuration = (startDate, endDate) => {
-  if (endDate < startDate) {
-    alert("End Date Should");
-    return;
-  }
-
-  const durationDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
-  let duration;
-  if (durationDays > 365) {
-    const durationYears = Math.floor(durationDays / 365);
-    duration = `${durationYears} Years`;
-  } else if (durationDays > 30) {
-    const durationMonths = Math.floor(durationDays / 30);
-    duration = `${durationMonths} Months`;
-  } else {
-    duration = `${durationDays} Days`;
-  }
-
-  return duration;
-};
 
 showData();
