@@ -197,7 +197,7 @@ input[type="file"]::file-selector-button {
 }
 
 /* punya container preview */
-.containerCard {
+#containerCard {
   /* background-color: cornflowerblue; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -239,4 +239,8 @@ div i {
   border-radius: 5px;
   height: 20px;
   margin-right: 2px;
+}
+.duration {
+  font-size: 0.8rem;
+  color: gray;
 }

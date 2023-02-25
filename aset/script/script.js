@@ -1,19 +1,48 @@
-let datas = [];
+let datas = [
+  {
+    image: "aset/images/Quality time1.png",
+    nama: "Ya Allah, Berilah Kemudahan",
+    description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repudiandae explicabo recusandae aperiam sit voluptas?",
+    equipment1: true,
+    equipment2: true,
+    equipment3: true,
+    date: "25 hari",
+  },
+  {
+    image: "aset/images/Quality time1.png",
+    nama: "Ya Allah, Berilah Kemudahan",
+    description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repudiandae explicabo recusandae aperiam sit voluptas?",
+    equipment1: true,
+    equipment2: true,
+    date: "2 bulan",
+  },
+  {
+    image: "aset/images/Quality time1.png",
+    nama: "Ya Allah, Berilah Kemudahan",
+    description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi repudiandae explicabo recusandae aperiam sit voluptas?",
+    equipment1: true,
+    date: "1 Tahun",
+  },
+];
+
 function getData(event) {
   event.preventDefault();
 
-  let nama = document.getElementById("name").value;
-  let startDate = document.getElementById("startDate").value;
-  let endDate = document.getElementById("endDate").value;
-  let description = document.getElementById("description").value;
-
+  const nama = document.getElementById("name").value;
+  const description = document.getElementById("description").value;
+  const equipment1 = document.getElementById("alat1").checked;
+  const equipment2 = document.getElementById("alat2").checked;
+  const equipment3 = document.getElementById("alat3").checked;
+  const equipment4 = document.getElementById("alat4").checked;
   let image = document.getElementById("upload").files;
+  const startDate = new Date(document.getElementById("startDate").value);
+  const endDate = new Date(document.getElementById("endDate").value);
+  const date = calculateDuration(startDate, endDate);
 
   image = URL.createObjectURL(image[0]);
-  let data = {
+  const data = {
     nama,
-    startDate,
-    endDate,
+    date,
     description,
     equipment1,
     equipment2,
@@ -21,51 +50,78 @@ function getData(event) {
     equipment4,
     image,
   };
+
+  console.log(date);
   datas.push(data);
   showData();
 }
 
-function showData() {
-  for (let i; i < datas.length; i++) {
-    const putContent = (document.getElementById("containerCard").innerHTML += `<div class="card">
-    <!-- Akan diambil dari upload-an-->
+const showData = () => {
+  document.getElementById("containerCard").innerHTML = "";
+
+  for (let i = 0; i < datas.length; i++) {
+    document.getElementById("containerCard").innerHTML += `<div class="card">
     <div class="gambar">
       <img src="${datas[i].image}" />
     </div>
-    <!-- Akan diambil dari name-->
+
     <div class="judulCard">
-      <h3><a href="blogPage.html" style="color: black">${datas[i].name}</a></h3>
+      <h3><a href="blogPage.html" style="color: black">${datas[i].nama}</a></h3>
     </div>
-    <!-- Asal saja di sini -->
+
+    <div class="duration">Duration: ${datas[i].date}</div>
+
     <div class="preview"><p>${datas[i].description}</p></div>
-    <!-- Akan muncul saat alat diceklis -->
-    <div class="icon"> ${cekList()}
+
+    <div class="icon">
+    ${cekList(datas[i])}
     </div>
     <div class="buttonCard">
       <button>edit</button>
       <button>delete</button>
     </div>
-  </div>`);
+  </div>`;
   }
+};
+
+function cekList(datas) {
+  let icon = (document.getElementsByClassName("icon").innerHTML = " ");
+
+  if (datas.equipment1 == true) {
+    icon += `<i class="fa-solid fa-image"></i>`;
+  }
+  if (datas.equipment2 == true) {
+    icon += `<i class="fa-solid fa-paintbrush"></i>`;
+  }
+  if (datas.equipment3 == true) {
+    icon += `<i class="fa-solid fa-tablet"></i>`;
+  }
+  if (datas.equipment4 == true) {
+    icon += `<i class="fa-brands fa-pinterest-p"></i>`;
+  }
+
+  return icon;
 }
 
-function cekList() {
-  let equipment1 = document.getElementById("alat1");
-  let equipment2 = document.getElementById("alat2");
-  let equipment3 = document.getElementById("alat3");
-  let equipment4 = document.getElementById("alat4");
+const calculateDuration = (startDate, endDate) => {
+  if (endDate < startDate) {
+    alert("End Date Should");
+    return;
+  }
 
-  let icon = (document.getElementById("icon").innerHTML = " ");
-  if (equipment1.checked == true) {
-    icon += <i class="fa-solid fa-image"></i>;
+  const durationDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+  let duration;
+  if (durationDays > 365) {
+    const durationYears = Math.floor(durationDays / 365);
+    duration = `${durationYears} Years`;
+  } else if (durationDays > 30) {
+    const durationMonths = Math.floor(durationDays / 30);
+    duration = `${durationMonths} Months`;
+  } else {
+    duration = `${durationDays} Days`;
   }
-  if (equipment2.checked == true) {
-    icon += <i class="fa-solid fa-paintbrush"></i>;
-  }
-  if (equipment3.checked == true) {
-    icon += <i class="fa-solid fa-tablet"></i>;
-  }
-  if (equipment4.checked == true) {
-    icon += <i class="fa-brands fa-pinterest-p"></i>;
-  }
-}
+
+  return duration;
+};
+
+showData();
